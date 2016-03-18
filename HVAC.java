@@ -147,7 +147,8 @@ public class HVAC {
 
         System.out.println("1. Add service call for furnace");
         System.out.println("2. Add service call for AC unit");
-        System.out.println("3. Quit");
+        System.out.println("3. Add service call for Water Heater");
+        System.out.println("4. Quit");
 
         int choice = getPositiveIntInput();
 
@@ -165,7 +166,7 @@ public class HVAC {
                 while (type < 1 || type > 3) {
                     System.out.println("Type of furnace?\n" +
                             Furnace.FurnaceTypeManager.furnaceTypeUserChoices());
-                            //We can only choose from types defined in FurnaceTypeManager
+                    //We can only choose from types defined in FurnaceTypeManager
                     type = getPositiveIntInput();
                 }
 
@@ -192,16 +193,32 @@ public class HVAC {
 
             }
             case 3: {
-                return;
 
+                System.out.println("Enter address of Water Heater");
+                String address = getStringInput();
+                System.out.println("Enter description of problem");
+                String problem = getStringInput();
+                System.out.println("Enter Water heater age");
+                int age = getPositiveIntInput();
+
+                WaterHeater wh = new WaterHeater(address, problem, new Date(), age);
+                todayServiceCalls.add(wh);
+                System.out.println("Added the following Water Heater to list of calls:\n" + wh);
+                break;
             }
-            default: {
-                System.out.println("Enter a number from the menu choices");
+
+                case 4: {
+                    return;
+
+                }
+                default: {
+                    System.out.println("Enter a number from the menu choices");
+                }
+
             }
 
         }
 
-    }
 
 
     //Validation methods
